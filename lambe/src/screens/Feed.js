@@ -5,6 +5,7 @@ import Post from '../components/Post'
 
 
 class Feed extends Component {
+     /* Vai servir como comentários temporários, se bem a biblioteca do Semantic UI é bem prática */
      state = {
           posts: [{
                id: Math.random(),
@@ -31,6 +32,8 @@ class Feed extends Component {
           return(
                <View style={styles.container}>
                     <Header/>
+                    {/* Sempre lembrar que o FlatList pede um keyExtractor */}
+                    {/* E também a forma como ele vai renderizar os itens dentro dele, nesse caso os posts */}
                     <FlatList
                          data={this.state.posts}
                          keyExtractor={item => `${item.id}`}

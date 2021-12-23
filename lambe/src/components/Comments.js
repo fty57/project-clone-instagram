@@ -3,8 +3,10 @@ import { View, Text, StyleSheet } from 'react-native'
 
 class Comments extends Component {
      render() {
+          /* A visualização de um comentário começa nula */
           let view = null
           if (this.props.comments) {
+               /* Em seguida para cada item dentro dos comments ele vai gerar um comentário */
                view = this.props.comments.map((item, index) => {
                     return (
                          <View style={styles.commentContainer} key={index}>
