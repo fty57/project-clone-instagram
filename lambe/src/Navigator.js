@@ -4,6 +4,7 @@ import Feed from './screens/Feed'
 
 import { createBottomTabNavigator } from 'react-navigation'
 
+/* Aqui tem-se um controle das rotas, um pouco diferente como estou habituado */
 const MenuRoutes = {
      Feed: {
           name: 'Feed',

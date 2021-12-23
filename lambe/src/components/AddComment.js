@@ -16,6 +16,7 @@ class AddComment extends Component{
      render(){
           let commentArea = null
           if(this.state.editMode){
+               /* Dessa maneira, caindo aqui pedindo um textInput para para em seguida submetê-lo */
                commentArea = (
                     <View style={styles.container}>
                          <TextInput placeholder='Pode comentar...'
@@ -29,18 +30,20 @@ class AddComment extends Component{
                     </View>
                )
           } else{
+               /* Quando você clickar no botão de adicionar um comentário, ele vai permitir a edição do mesmo */
                commentArea = (
                     <TWF onPress={() => this.setState({editMode: true})}>
                          <View style={styles.container}>
                               <Icon name='comment-o' size={25} color="#555" />
                               <Text style={styles.caption}>
-                                   Adicionae um comentário...
+                                   Adicionar um comentário...
                               </Text>
                          </View>
                     </TWF>
                )
           }
           return(
+               /* Lembrando que ele sempre vai retornar os comentários do commentArea, mesmo que ele esteja nulo, quando não tiver comentário algum */
                <View style={{flex: 1}}>
                     {commentArea}
                </View>

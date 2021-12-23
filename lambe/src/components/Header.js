@@ -12,6 +12,7 @@ import icon from '../../assets/img/camera.png'
 class Header extends Component {
      render() {
           return (
+               /* O Header ficou um pouco estrano pois não pegou a fonte desejada, lembrar de estudar a aplicação de fontes */
                <View style={styles.container}>
                     <View style={styles.rowContainer}>
                          <Image source={icon} style={styles.image} />
