@@ -8,7 +8,7 @@ class AddPhoto extends Component {
           image: null,
           comment: '',
      }
-
+     /* Função responsável por pegar a imagem da galeria, ou de tirar a foto. Usando a biblioteca ImagePicker */
      pickImage = () =>{
           ImagePicker.showImagePicker({
                title: 'Escolha a imagem',
@@ -21,6 +21,7 @@ class AddPhoto extends Component {
           })
      }
 
+     /* Futuramente fazer um método save */
      save = async () => {
           Alert.alert('Imagem adicionada', this.state.comment)
      }
@@ -29,15 +30,19 @@ class AddPhoto extends Component {
           return(
                <ScrollView>
                     <View style={styles.container}>
-                         <Text style={styles.title}>   Compartilhe uma image
-                         </Text>
+
+                         <Text style={styles.title}>Compartilhe uma imagem</Text>
+
                          <View style={styles.imageContainer}>
                               <Image source={this.state.image} style={styles.image}/>
                          </View>
+
                         <TouchableOpacity onPress={this.pickImage} style={styles.button}></TouchableOpacity> 
+
                         <TextInput placeholder='Algum comentário para a foto?' style={styles.input} value={this.state.comment} onChangeText={comment => this.setState({comment})}/>
+
                         <TouchableOpacity onpress={this.save} style={styles.button}>
-                         <Text style={styles.buttonText}>Salvar</Text>
+                              <Text style={styles.buttonText}>Salvar</Text>
                         </TouchableOpacity>
                     </View>
                </ScrollView>
