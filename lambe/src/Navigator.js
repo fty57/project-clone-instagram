@@ -4,8 +4,16 @@ import Feed from './screens/Feed'
 
 import AddPhoto from './screens/AddPhoto'
 import Profile from './screens/Profile'
+import Login from './screens/Login'
 
-import { createBottomTabNavigator } from 'react-navigation'
+
+import { createBottomTabNavigator, createSwitchNavigator } from 'react-navigation'
+const loginOrProfileRouter = createSwitchNavigator({
+     Profile: Profile,
+     Auth: Login
+}, {
+     initialRouteName: 'Profile'
+})
 
 /* Aqui tem-se um controle das rotas, um pouco diferente como estou habituado */
 const MenuRoutes = {
@@ -29,7 +37,7 @@ const MenuRoutes = {
      },
      Profile: {
           name: 'Profile',
-          screen: Profile,
+          screen: loginOrProfileRouter,
           navigationOptions: {
                title: 'Profile',
                tabBarIcon: ({ tintColor }) =>

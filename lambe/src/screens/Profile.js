@@ -4,8 +4,9 @@ import {Gravatar} from 'react-native-gravatar'
 
 class Profile extends Component {
      logout = () =>{
-
+          this.props.navigation.navigate('Auth')
      }
+
      render(){
           const options= { email: 'fulandodetal@gmai.com', secure: true }
           return(
