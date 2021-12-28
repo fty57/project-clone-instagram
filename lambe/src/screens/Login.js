@@ -14,12 +14,13 @@ class Login extends Component {
      render() {
           return (
                <View style={styles.container}>
+                    {/* autoFocus é uma instrução para que o teclado já começar Set */}
                     <TextInput placeholder='Email' style={styles.input} autoFocus={true} keyboardType='email-andress' value={this.state.email} onChangeText={email => this.setState({ email })} />
                     <TextInput placeholder='Senha' style={styles.input} secureTextEntry={true} value={this.state.password} onChangeText={password => this.setState({ password })} />
                     <TouchableOpacity onPress={this.login} style={styles.buttom}>
                          <Text style={styles.buttomText}>Login</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {}} style={styles.buttom}>
+                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Register') }} style={styles.buttom}>
                          <Text style={styles.buttomText}>Criar nova conta...</Text>
                     </TouchableOpacity>
 
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
           alignItems: 'center',
           justifyContent: 'center',
      },
-     buttom : {
+     buttom: {
           marginTop: 30,
           padding: 10,
           backgroundColor: '#4286f4'
