@@ -10,10 +10,18 @@ class Register extends Component {
 
      render(){
           return (
+               /* Uma simples tela de para receber os parâmetros necessários */
                <View style={styles.container}>
                     <TextInput placeholder='Nome' style={styles.input} autoFocus={true} value={this.state.name} onChangeText={name => this.setState({name})}/>
-                    <TextInput placeholder='Email' style={styles.input} keyboardType='email-andress' value={this.state.email} onChangeText={email => this.setState({email})}/>
+                    
+                    {/* O teclado será alterado para uma configuração ideal para quando o usuário for digitar seu email */}
+                    <TextInput placeholder='Email' style={styles.input} 
+                    keyboardType='email-andress' value={this.state.email} onChangeText={email => this.setState({email})}/>
+
+                    {/* Sempre bom lembrar que a senha é bom ser protegida pela propriedade secureTextInput */}
                     <TextInput placeholder='Senha' style={styles.input} secureTextInput={true} value={this.state.password} onChangeText={password => this.setState({ password })} />
+
+                    {/* Botão que por enquanto não salva o usuário no banco de dados, mas futuramente essa será sua função */}
                     <TouchableOpacity onPress={()=> {}} style={styles.buttom}>
                          <Text style={styles.buttomText}>Salvar</Text>
                     </TouchableOpacity>
