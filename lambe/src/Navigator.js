@@ -8,9 +8,10 @@ import Login from './screens/Login'
 
 import Register from './screens/Register'
 
-
+// Pode-se importar até mais que isso
 import { createBottomTabNavigator, createSwitchNavigator, createStackNavigator } from 'react-navigation'
 
+// Pode-se manipular bem a criação de navegações diferentes para rotas diferentes
 const authRouter = createStackNavigator({
      Login: {screen: Login, navigationOptions: { title: 'Login'}},
      Register: {screen: Register, navigationOptions: { title: 'Register'}}
