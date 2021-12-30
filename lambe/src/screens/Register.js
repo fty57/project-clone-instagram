@@ -21,6 +21,7 @@ class Register extends Component {
                     {/* Sempre bom lembrar que a senha é bom ser protegida pela propriedade secureTextInput */}
                     <TextInput placeholder='Senha' style={styles.input} secureTextInput={true} value={this.state.password} onChangeText={password => this.setState({ password })} />
 
+
                     {/* Botão que por enquanto não salva o usuário no banco de dados, mas futuramente essa será sua função */}
                     <TouchableOpacity onPress={()=> {}} style={styles.buttom}>
                          <Text style={styles.buttomText}>Salvar</Text>
