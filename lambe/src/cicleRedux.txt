@@ -1,0 +1,17 @@
+Ciclo Redux:
+1.: UI => Você teria um botão que seria "Adicionar um produto"
+2.: Botão => Ele dispara a a função "Action Creator" - "Adicionar produto"
+     function addProd(...) {
+          return(
+               {
+                    type: "ADD_PRODUCT",
+                    payload: {...} // Price, Name, Description e ETC
+               }
+          )
+     }
+     Obs.: O "type" é obrigatório
+3.: O retorno dessa função => Será o tipo "type" do produto e o "payload" desse produto
+4.: Middlewares
+5.: Reducers => Supor que 2 reducers estão interessados em atender essa ação de "Adicionar"
+6.: O resultado dessas ações irão alterar a STORE
+7.: Finalmente esse dado será refletido na interface
