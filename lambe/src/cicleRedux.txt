@@ -1,35 +1,36 @@
-Ciclo Redux:
-     1.: UI => Você teria um botão que seria "Adicionar um produto"
-     2.: Botão => Ele dispara a a função "Action Creator" - "Adicionar produto"
-          function addProd(...) {
-               return(
-                    {
-                         type: "ADD_PRODUCT",
-                         payload: {...} // Price, Name, Description e ETC
-                    }
-               )
-          }
-          Obs.: O "type" é obrigatório
-     3.: O retorno dessa função => Será o tipo "type" do produto e o "payload" desse produto
-     4.: Middlewares
-     5.: Reducers => Supor que 2 reducers estão interessados em atender essa ação de "Adicionar"
-     6.: O resultado dessas ações irão alterar a STORE
-     7.: Finalmente esse dado será refletido na interface
+REDUX:
+     Ciclo Redux:
+          1.: UI => Você teria um botão que seria "Adicionar um produto"
+          2.: Botão => Ele dispara a a função "Action Creator" - "Adicionar produto"
+               function addProd(...) {
+                    return(
+                         {
+                              type: "ADD_PRODUCT",
+                              payload: {...} // Price, Name, Description e ETC
+                         }
+                    )
+               }
+               Obs.: O "type" é obrigatório
+          3.: O retorno dessa função => Será o tipo "type" do produto e o "payload" desse produto
+          4.: Middlewares
+          5.: Reducers => Supor que 2 reducers estão interessados em atender essa ação de "Adicionar"
+          6.: O resultado dessas ações irão alterar a STORE
+          7.: Finalmente esse dado será refletido na interface
 
 
-Clone Redux Instagram:
-     1.: UI => Quando o usuário informar o login e a senha, vamos disparar o nosso  "Action Creator"
-     2.: Action Creator => Dentro dessa função, teremos duas outras funções dentro: Login e Logout.
-          Login => A função de login, vai ter um USER_LOGGED_IN, essa será o tipo da ação. Será o payload dessa action creator: (Email e Nome).
-          Logout => A função de loggout, terá apenas o USER_LOGGED_OUT removendo apenas o usuário da STORE.
-     3.: Action Creator LOGIN => Essa action será enviada para os reducers.
-     4.: Reducers => Teremos um reducer próprio para modificar os USERS, ele está esperando o USER_LOGGED_IN e o payload(Email e Nome) e esse payload será adicionado na STORE.
-          Obs.: Normalmente dentro de um reducer tem um swith(Type){
-               case 'USER_LOGGED_IN':
-                    ...Modificações na STORE
-          }
-     5.: STORE => Uma das chaves daqui será:
-          USER: {
-               EMAIL: '....'
-               NOME: '...'
-          }
+     Clone Redux Instagram:
+          1.: UI => Quando o usuário informar o login e a senha, vamos disparar o nosso  "Action Creator"
+          2.: Action Creator => Dentro dessa função, teremos duas outras funções dentro: Login e Logout.
+               Login => A função de login, vai ter um USER_LOGGED_IN, essa será o tipo da ação. Será o payload dessa action creator: (Email e Nome).
+               Logout => A função de loggout, terá apenas o USER_LOGGED_OUT removendo apenas o usuário da STORE.
+          3.: Action Creator LOGIN => Essa action será enviada para os reducers.
+          4.: Reducers => Teremos um reducer próprio para modificar os USERS, ele está esperando o USER_LOGGED_IN e o payload(Email e Nome) e esse payload será adicionado na STORE.
+               Obs.: Normalmente dentro de um reducer tem um swith(Type){
+                    case 'USER_LOGGED_IN':
+                         ...Modificações na STORE
+               }
+          5.: STORE => Uma das chaves daqui será:
+               USER: {
+                    EMAIL: '....'
+                    NOME: '...'
+               }
