@@ -16,6 +16,7 @@ Ciclo Redux:
      6.: O resultado dessas ações irão alterar a STORE
      7.: Finalmente esse dado será refletido na interface
 
+
 Clone Redux Instagram:
      1.: UI => Quando o usuário informar o login e a senha, vamos disparar o nosso  "Action Creator"
      2.: Action Creator => Dentro dessa função, teremos duas outras funções dentro: Login e Logout.
