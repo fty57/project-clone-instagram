@@ -1,6 +1,7 @@
 // Aqui você vai ouvir as alterações e mudar o estado eventualmente
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from "../actions/actionTypes";
 
+// Faz parte do estado global da minha aplicação
 const initialState = {
      name: null,
      email: null

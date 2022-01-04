@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, TouchableHighlightBase } from 'react-native'
+import { connect } from 'react-redux'
+import { login } from '../store/actions/user'
 
 class Login extends Component {
      state = {
+          name: 'Temporário',
           email: '',
           password: ''
      }
 
      login = () => {
+          this.props.onLogin({ ...this.state })
           this.props.navigation.navigate('Profile')
      }
 
@@ -54,4 +58,16 @@ const styles = StyleSheet.create({
      }
 })
 
-export default Login
+// mapStateToProps mapear a função que estão no estado global da aplicação e colocar aqui
+
+const mapDispatchToProps = dispatch => {
+     return {
+          // Recebe esse usuário como parâmetro, e depois será usado passado como payload
+          onLogin: user => dispatch(login(user))
+     }
+}
+
+// export default Login
+
+export default connect(null, mapDispatchToProps)(Login)
+// connect retorna uma função que chama Login depois

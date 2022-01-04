@@ -23,7 +23,7 @@ const loginOrProfileRouter = createSwitchNavigator({
      Profile: Profile,
      Auth: authRouter
 }, {
-     initialRouteName: 'Profile'
+     initialRouteName: 'Auth'
 })
 
 /* Aqui tem-se um controle das rotas, um pouco diferente como estou habituado */
