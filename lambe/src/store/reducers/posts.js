@@ -1,4 +1,4 @@
-import { ADD_POST } from '../actions/actionTypes'
+import { ADD_COMMENT, ADD_POST } from '../actions/actionTypes'
 
 const initialState = {
      posts: [{
@@ -30,6 +30,23 @@ const reducer = (state = initialState, action) => {
                     // Pegando todos os atributos que estão no payload dessa action e gerando um novo objeto para o posts
                     posts: state.posts.concat({
                          ...action.payload
+                    })
+               }
+          case ADD_COMMENT:
+               return {
+                    ...state,
+                    posts: state.posts.map(post => {
+                         if(post.id === action.payload.postId){
+                              if(post.comments){
+                                   post.comments = post.comments.concat(
+                                        action.payload.comment
+                                   )
+                              }else{
+                                   post.comments = [action.payload.comment]
+                              }
+                              
+                         }
+                         return post
                     })
                }
           default:
