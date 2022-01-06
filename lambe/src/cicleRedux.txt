@@ -34,3 +34,8 @@ REDUX:
                     EMAIL: '....'
                     NOME: '...'
                }
+
+Usando o redux Thunk:
+     - Você tem a opção de ao invés de retornar uma Action a partir do Action Creator
+     - Você pode retornar uma função que recebe como parâmetro o dispatch
+     - A partir do dispatch você pode fazer o que você quiser de forma assincrona
