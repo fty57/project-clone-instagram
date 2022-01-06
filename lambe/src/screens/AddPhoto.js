@@ -5,6 +5,8 @@ import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Dimensions,
 
 import ImagePicker from 'react-native-image-picker'
 
+const noUser = 'Você precisa estar logado para adicionar imagens'
+
 class AddPhoto extends Component {
      state = {
           image: null,
@@ -12,6 +14,11 @@ class AddPhoto extends Component {
      }
      /* Função responsável por pegar a imagem da galeria, ou de tirar a foto. Usando a biblioteca ImagePicker */
      pickImage = () =>{
+          if(!this.props.name){
+               Alert.alert('Falha!', noUser)
+               return
+          }
+
           ImagePicker.showImagePicker({
                title: 'Escolha a imagem',
                maxHeight: 600,
@@ -25,6 +32,11 @@ class AddPhoto extends Component {
 
      /* Futuramente fazer um método save */
      save = async () => {
+          if(!this.props.name){
+               Alert.alert('Falha!', noUser)
+               return
+          }
+
           this.props.onAddPost({
                id: Math.random(),
                nickname: this.props.name,
@@ -57,7 +69,7 @@ class AddPhoto extends Component {
                         <TouchableOpacity onPress={this.pickImage} style={styles.button}></TouchableOpacity> 
                          
                          {/* Para fazer algum comentário na própria foto. */}
-                        <TextInput placeholder='Algum comentário para a foto?' style={styles.input} value={this.state.comment} onChangeText={comment => this.setState({comment})}/>
+                        <TextInput placeholder='Algum comentário para a foto?' style={styles.input} value={this.state.comment} editable={this.props.name != null} onChangeText={comment => this.setState({comment})}/>
 
                          {/* Para enviar a foto selecionada */}
                         <TouchableOpacity onpress={this.save} style={styles.button}>
