@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
 // Quando você faz o import, pode-se mudar o nome
 import userReducer from './reducers/user'
@@ -13,7 +14,7 @@ const reducers = combineReducers({
 })
 
 const storeConfig = () =>{
-     return createStore(reducers)
+     return createStore(reducers, compose(applyMiddleware(thunk)))
 }
 
 // Retorna uma função que cria uma store

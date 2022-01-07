@@ -5,6 +5,9 @@ import { View } from 'react-native'
 import Navigator from './src/Navigator'
 import storeConfig from './src/store/storeConfig'
 
+import axios from 'axios'
+axios.defaults.baseURL = 'http://projeto-clone-instagram.firebaseio.com/'
+
 const store = storeConfig()
 const Redux = () => {
   <Provider store={store}>
