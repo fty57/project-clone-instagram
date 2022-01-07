@@ -4,9 +4,21 @@ import axios from 'axios'
 export const addPost = post => {
      return dispatch =>{
           // O método http
-          axios.post('./posts.json', { ...post })
-          .catch(err => console.error(err))
-          .then(res => console.log(res.data))
+          axios({
+               url: 'uploadImage',
+               baseURL: 'http://localhost/',
+               method: 'post',
+               data: {
+                    image: post.image.base64
+               }
+          })
+               .catch(err => console.log(err))
+               .then(res => {
+                    post.image = res.data.imageUrl
+                    axios.post('./posts.json', { ...post })
+                    .catch(err => console.error(err))
+                    .then(res => console.log(res.data))
+               })
      }
      /* return {
           type: ADD_POST,
