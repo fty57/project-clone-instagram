@@ -3,13 +3,14 @@ import {connect } from 'react-redux'
 import { StyleSheet, FlatList, View} from 'react-native'
 import Header from '../components/Header'
 import Post from '../components/Post'
+import { fetchPosts} from '../store/actions/posts'
 
 
 class Feed extends Component {
-     /* Vai servir como comentários temporários, se bem a biblioteca do Semantic UI é bem prática */
-/*      state = {
-          
-     } */
+     // Na função arrow o this nunca vai mudar
+     componentDidMount = () => {
+          this.props.onFetchPosts()
+     }
 
      render(){
           return(
@@ -45,4 +46,10 @@ const mapStateToProps = ({ posts }) =>{
      }
 }
 
-export default connect(mapStateToProps)(Feed)
+const mapDispatchToProps = dispatch => {
+     return {
+          onFetchPosts: () => dispatch(fetchPosts())
+     }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)

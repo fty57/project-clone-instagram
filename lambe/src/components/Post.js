@@ -13,7 +13,7 @@ class Post extends Component {
                /* A postagem de um comentário é feita enviando esses 3 componentes */
                <View style={styles.container}>
                     {/* Eles recebem tudo via props */}
-                    <Image source={this.props.image} style={styles.image} />
+                    <Image source={{ uri: this.props.image }} style={styles.image} />
                     <Author email={this.props.email} nickname={this.props.nickname}/>
                     <Comments comments={this.props.comments} />
                     {addComment}

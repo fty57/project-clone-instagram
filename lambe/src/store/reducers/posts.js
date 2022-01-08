@@ -1,36 +1,16 @@
-import { ADD_COMMENT, ADD_POST } from '../actions/actionTypes'
+import { ADD_COMMENT, SET_POSTS, CREATING_POSTS, POST_CREATED} from '../actions/actionTypes'
 
 const initialState = {
-     posts: [{
-          id: Math.random(),
-          nickname: 'Marcus da Silva',
-          email: 'marcusdasilva@gmail.com',
-          image: require('../../../assets/img/cogumelo-700x525.jpg'),
-          comments: [{
-               nickname: 'John Ray Sheldon',
-               comment: 'Stunning!'
-          },{
-               nickname: 'Ana Julia Arruda',
-               comment: 'Foto Linda! Onde foi tirada?'
-          }]
-     }, {
-          id: Math.random(),
-          nickname: 'Francisco Leando Lima',
-          email: 'fllima@gmail.com',
-          image: require('../../../assets/img/pianist=700x1072.jpg'),
-          comments: []
-     }]
+     posts: [],
+     isUpdating: false,
 }
 
 const reducer = (state = initialState, action) => {
      switch (action.type) {
-          case ADD_POST:
+          case SET_POSTS:
                return {
                     ...state,
-                    // Pegando todos os atributos que estão no payload dessa action e gerando um novo objeto para o posts
-                    posts: state.posts.concat({
-                         ...action.payload
-                    })
+                    posts: action.payload
                }
           case ADD_COMMENT:
                return {
@@ -48,6 +28,16 @@ const reducer = (state = initialState, action) => {
                          }
                          return post
                     })
+               }
+          case CREATING_POSTS:
+               return {
+                    ...state,
+                    isUpdating: true
+               }
+          case POST_CREATED:
+               return {
+                    ...state,
+                    isUpdating: false
                }
           default:
                // Para que ele não gere nenhum problema

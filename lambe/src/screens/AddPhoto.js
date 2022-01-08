@@ -12,6 +12,17 @@ class AddPhoto extends Component {
           image: null,
           comment: '',
      }
+     componentDidUpdate = prevProps => {
+          // Ele vai ser chamado quando as propriedades de um componente tiver sido atualizada
+          if(prevProps.loading && !this.props.loading){
+               this.setState({
+                    image: null, 
+                    comment: ''
+               })
+               this.props.navigation.navigate('Feed')
+          }
+     }
+
      /* Função responsável por pegar a imagem da galeria, ou de tirar a foto. Usando a biblioteca ImagePicker */
      pickImage = () =>{
           if(!this.props.name){
@@ -48,8 +59,8 @@ class AddPhoto extends Component {
                }]
           })
 
-          this.setState({ image: null, comment: ''})
-          this.props.navigation.navigate('Feed')
+          // this.setState({ image: null, comment: ''})
+          // this.props.navigation.navigate('Feed')
      }
 
      render(){
@@ -72,7 +83,8 @@ class AddPhoto extends Component {
                         <TextInput placeholder='Algum comentário para a foto?' style={styles.input} value={this.state.comment} editable={this.props.name != null} onChangeText={comment => this.setState({comment})}/>
 
                          {/* Para enviar a foto selecionada */}
-                        <TouchableOpacity onpress={this.save} style={styles.button}>
+                        <TouchableOpacity onpress={this.save}
+                        disabled={this.props.loading} style={[styles.button, this.props.loading ? styles.buttonDisabled: null]}>
                               <Text style={styles.buttonText}>Salvar</Text>
                         </TouchableOpacity>
                     </View>
@@ -115,15 +127,19 @@ const styles = StyleSheet.create({
      input: {
           marginTop: 20,
           width: '90%'
+     },
+     buttonDisabled: {
+          backgroundColor: '#AAA'
      }
 })
 
 // export default AddPhoto
 
-const mapStateToProps = ({user}) =>{
+const mapStateToProps = ({user, posts}) =>{
      return {
           email: user.email, 
-          name: user.name
+          name: user.name,
+          loadin: posts.isUpdating
      }
 }
 
