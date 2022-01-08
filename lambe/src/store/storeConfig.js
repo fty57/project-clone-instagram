@@ -7,10 +7,13 @@ import userReducer from './reducers/user'
 // Agora o estado atual da nossa aplicação terá user e posts
 import postsReducer from './reducers/posts'
 
+import messageReducer from './reducers/message'
+
 const reducers = combineReducers({
      // Tudo que está dentro do userReducer, está agora dentro da chave global user
      user: userReducer,
      posts: postsReducer,
+     message: messageReducer,
 })
 
 const storeConfig = () =>{

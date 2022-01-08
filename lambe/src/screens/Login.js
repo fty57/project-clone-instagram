@@ -10,6 +10,12 @@ class Login extends Component {
           password: ''
      }
 
+     componentDidUpdate = prevProps =>{
+          if(prevProps.isLoading && !this.props.isLoading){
+               this.props.navigation.navigate('Profile')
+          }
+     }
+
      login = () => {
           this.props.onLogin({ ...this.state })
           this.props.navigation.navigate('Profile')
@@ -58,6 +64,12 @@ const styles = StyleSheet.create({
      }
 })
 
+const mapStateToProps = ({ user }) => {
+     return {
+          isLoading: user.isLoading
+     }
+}
+
 // mapStateToProps mapear a função que estão no estado global da aplicação e colocar aqui
 
 const mapDispatchToProps = dispatch => {
@@ -69,5 +81,5 @@ const mapDispatchToProps = dispatch => {
 
 // export default Login
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
 // connect retorna uma função que chama Login depois

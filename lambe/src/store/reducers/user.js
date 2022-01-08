@@ -1,10 +1,11 @@
 // Aqui você vai ouvir as alterações e mudar o estado eventualmente
-import { USER_LOGGED_IN, USER_LOGGED_OUT } from "../actions/actionTypes";
+import { USER_LOGGED_IN, USER_LOGGED_OUT, LOADING_USER, USER_LOADED} from "../actions/actionTypes";
 
 // Faz parte do estado global da minha aplicação
 const initialState = {
      name: null,
-     email: null
+     email: null,
+     isLoading: false,
 }
 
 // Para cada ação eu terei uma forma de alterar o estado da minha aplicação
@@ -25,6 +26,16 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     name: null,
                     email: null
+               }
+          case LOADING_USER:
+               return{
+                    ...state,
+                    isLoading: true
+               }
+          case USER_LOADED:
+               return {
+                    ...state,
+                    isLoading: false
                }
           default:
                // Retorna o próprio estado atual
