@@ -24,6 +24,7 @@ export const logout = () => {
 
 export const createUser = user =>{
      return dispatch =>{
+          dispatch(loadingUser())
           axios.posts(`${authBaseURL}/signupNewUser?key=${APIKEY}`, { 
                email: user.email,
                password: user.password,
@@ -34,15 +35,15 @@ export const createUser = user =>{
                })
                .then(res => {
                     if(res.data.localId){
+                         user.token = res.data.idToken
                          axios.put(`/users/${res.data.localId}.json`, {
                               name: user.name
                          })
                               .catch(err => {
                                    dispatch(setMessage({title: 'Erro', text: 'Ocorreu um erro inesperado'}))
                               })
-                              .then(res => {
-                                   dispatch(setMessage({title: 'Sucesso', text: 'Usuário criado com sucesso'}))
-                                   console.log('Usuário criado com sucesso')
+                              .then(() => {
+                                   dispatch(login(user))
                               })
                     }
                })
@@ -80,7 +81,7 @@ export const login = user => {
                               dispatch(setMessage({title: 'Erro', text: 'Ocorreu um erro inesperado'}))
                          })
                          .then(res => {
-                              user.password = null
+                              delete user.password 
                               user.name = res.data.name
                               dispatch(userLogged(user))
                               dispatch(userLoaded())

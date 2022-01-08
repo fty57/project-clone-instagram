@@ -6,6 +6,7 @@ const initialState = {
      name: null,
      email: null,
      isLoading: false,
+     token: null
 }
 
 // Para cada ação eu terei uma forma de alterar o estado da minha aplicação
@@ -19,13 +20,12 @@ const reducer = (state = initialState, action) => {
                     ...state, // Copia tudo
                     name: action.payload.name, // Modifica apenas os arquivos que deseja
                     email: action.payload.email,
+                    token: action.payload.token,
                     
                }
           case USER_LOGGED_OUT: 
                return {
-                    ...state,
-                    name: null,
-                    email: null
+                    ...initialState
                }
           case LOADING_USER:
                return{

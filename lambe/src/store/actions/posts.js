@@ -4,7 +4,8 @@ import axios from 'axios'
 import {setMessage} from './message'
 
 export const addPost = post => {
-     return dispatch =>{
+     // getState - tente nunca alterar a partir do getState, cuidado com esse uso
+     return (dispatch, getState) =>{
           dispatch(creatingPost())
 
           // O método http
@@ -19,7 +20,7 @@ export const addPost = post => {
                .catch(err => dispatch(setMessage({title: 'Erro', text: 'Ocorreu um erro inesperado'})))
                .then(res => {
                     post.image = res.data.imageUrl
-                    axios.post('./posts', { ...post })
+                    axios.post(`/posts.json?auth=${getState().user.token}`, {...post})
                     .catch(err => {
                          dispatch(setMessage({title: 'Erro', text: err}))
                     })
@@ -37,13 +38,13 @@ export const addPost = post => {
 }
 
 export const addComment = payload => {
-     return dispatch =>{
+     return (dispatch, getState) =>{
           axios.get(`/posts/${payload.postId}.json`)
                .catch(err => dispatch(setMessage({title: 'Erro', text: 'Ocorreu um erro inesperado'})))
                .then(res => {
                     const comments = res.data.comments || []
                     comments.push(payload.comment)
-                    axios.patch(`/posts/${payload.postId}.json`, { comments})
+                    axios.patch(`/posts/${payload.postId}.json?auth=${getState().user.token}`, { comments})
                     .catch(err => dispatch(setMessage({title: 'Erro', text: 'Ocorreu um erro inesperado'})))
                     .then(res => {
                          dispatch(fetchPosts())
